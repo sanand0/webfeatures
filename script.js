@@ -87,7 +87,6 @@ function highlight({ minYear, maxYear, ...rest }) {
       .attr("y", startY)
       .attr("width", xGap)
       .attr("height", endY - startY)
-      .attr("fill", "rgba(0, 0, 255, 0.1)")
       .style("pointer-events", "none");
   });
 }
@@ -102,7 +101,7 @@ function drawBubbles(maxYear) {
 
   // Create SVG if it doesn't exist
   if (svg.empty()) {
-    svg = container.append("svg");
+    svg = container.append("svg").attr("fill", "currentColor");
     svg.append("g").attr("transform", `translate(${margin.left},${margin.top})`);
   }
 
@@ -111,27 +110,23 @@ function drawBubbles(maxYear) {
   const g = svg.select("g");
 
   // Update grid lines
-  g.selectAll(".vGrid")
+  g.selectAll(".v-grid")
     .data(browsers)
     .join("line")
-    .attr("class", "vGrid")
+    .attr("class", "v-grid")
     .attr("x1", (d, i) => (i + 0.5) * xGap)
     .attr("x2", (d, i) => (i + 0.5) * xGap)
     .attr("y1", 0)
-    .attr("y2", height)
-    .attr("stroke", "#ddd")
-    .attr("stroke-width", 0.5);
+    .attr("y2", height);
 
-  g.selectAll(".hGrid")
+  g.selectAll(".h-grid")
     .data(filteredData)
     .join("line")
-    .attr("class", "hGrid")
+    .attr("class", "h-grid")
     .attr("x1", 0)
     .attr("x2", width)
     .attr("y1", (d, i) => (i + 0.5) * yGap)
-    .attr("y2", (d, i) => (i + 0.5) * yGap)
-    .attr("stroke", "#ddd")
-    .attr("stroke-width", 0.5);
+    .attr("y2", (d, i) => (i + 0.5) * yGap);
 
   // Render circles for each browser
   browsers.forEach((browser, browserIndex) => renderCircle(g, browser, browserIndex, filteredData));
@@ -204,8 +199,6 @@ const renderCircle = (g, browser, browserIndex, filteredData) => {
     .attr("cy", (d, i) => (i + 0.5) * yGap)
     .attr("r", (d) => sizeScale(d[browser]?.count || 0))
     .attr("fill", (d) => (d[browser]?.count ? colorScale(d[browser].delay) : "none"))
-    .attr("stroke", "rgba(0,0,0,0.5)")
-    .attr("stroke-width", 1)
     .attr("data-browser", browser);
 };
 
