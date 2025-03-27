@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How Quickly do Browsers Implement Features?</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .story-card {
+      max-width: 30rem;
+      background-color: var(--bs-body-bg);
+      z-index: 10000;
+      margin-bottom: 100vh;
+      opacity: 0.5;
+    }
+
+    .story-card.active {
+      opacity: 1;
+    }
+
+    .tooltip {
+      position: absolute;
+      background-color: white;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    .circle-highlight {
+      stroke: black;
+      stroke-width: 2px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container-fluid">
+    <h1 class="text-center display-4 my-5">How Quickly do Browsers Implement Features?</h1>
+
+    <div class="mx-auto col-md-6 col-lg-4 col-xl-3">
+      <p>The visual below shows the <strong>average delay</strong> of a browser releasing a feature. It's the number of days between the first release of a feature and the browser's release of that feature.</p>
+      <p>The <strong>color</strong> of the bubbles shows the <strong>average delay</strong>. The <strong>size</strong> of the bubbles is based on the <strong>number of features released</strong> by a browser.</p>
+      <p>Hover over a bubble to see the browser, year, average delay (in days), average rank (i.e. in that year, was it the fastest = rank 1, second fastest = rank 2, etc.) and number of features released (# of rows).</p>
+    </div>
+
+    <div id="metric-bubbles" class="text-center sticky-top"></div>
+
+    <div class="stories py-5">
+      <section class="story-card card shadow-sm mx-auto p-3" data-from="1997" data-to="2001" data-browsers="ie">
+        <h3 class="h5">IE's Feature Blitzkrieg</h3>
+        <p class="mb-0">In the first browser war, IE released features at exceptional speed, integrating with Windows to rapidly gain dominance over Netscape, though sometimes prioritizing features over standards.</p>
+      </section>
+
+      <section class="story-card card shadow-sm mx-auto p-3" data-from="2003" data-to="2008" data-browsers="ie">
+        <h3 class="h5">The Great IE Stagnation</h3>
+        <p class="mb-0">After winning the browser war, IE's development ground to a halt. This lack of progress created a market vacuum and user frustration, paving the way for new competitors.</p>
+      </section>
+
+      <section class="story-card card shadow-sm mx-auto p-3" data-from="2004" data-to="2008" data-browsers="firefox">
+        <h3 class="h5">Firefox Fills the Void</h3>
+        <p class="mb-0">Emerging during IE's slumber, Firefox offered consistent, standards-focused updates. It provided a much-needed modern alternative, rapidly gaining users seeking better web compatibility.</p>
+      </section>
+
+      <section class="story-card card shadow-sm mx-auto p-3" data-from="2007" data-to="2010" data-browsers="safari, webview_ios,safari_ios">
+        <h3 class="h5">Apple Defines Early Mobile Web</h3>
+        <p class="mb-0">With the iPhone, Safari on iOS and the in-app WebView arrived together. Their identical, steady development patterns show Apple's controlled, unified WebKit approach to the nascent mobile web.</p>
+      </section>
+
+      <section class="story-card card shadow-sm mx-auto p-3" data-from="2008" data-to="2010" data-browsers="chrome">
+        <h3 class="h5">The Chrome Shockwave</h3>
+        <p class="mb-0">Google Chrome's 2008 launch immediately disrupted the market. It debuted with a focus on speed and rapid feature releases, fundamentally accelerating the pace of browser development industry-wide.</p>
+      </section>
+
+      <section class="story-card card shadow-sm mx-auto p-3" data-from="2011" data-to="2014" data-browsers="opera">
+        <h3 class="h5">Opera's Engine Swap & Acceleration</h3>
+        <p class="mb-0">Opera's shift from its Presto engine to Chromium's Blink around 2013 is clearly visible. Development speed and volume increased dramatically, aligning it with the faster Chromium ecosystem.</p>
+      </section>
+
+      <section class="story-card card shadow-sm mx-auto p-3" data-from="2012" data-to="2017" data-browsers="safari">
+        <h3 class="h5">Safari's Steady macOS Cadence</h3>
+        <p class="mb-0">Unlike others, desktop Safari maintained a consistent, predictable release pattern. This reflects updates tied to Apple's annual OS releases – stable and integrated, but sometimes lagging Chrome's faster cycle.</p>
+      </section>
+
+      <section class="story-card card shadow-sm mx-auto p-3" data-from="2015" data-to="2016" data-browsers="edge">
+        <h3 class="h5">EdgeHTML's Rocky Start</h3>
+        <p class="mb-0">Microsoft's initial Edge launch (EdgeHTML engine) showed a large feature bundle, but seemed slow to adopt rapidly evolving standards or maintain a fast release cadence, struggling to keep pace from the beginning.</p>
+      </section>
+
+      <section class="story-card card shadow-sm mx-auto p-3" data-from="2013" data-to="2018" data-browsers="chrome_android,opera_android,firefox_android,webview_android,samsunginternet_android">
+        <h3 class="h5">Android's Dynamic Rise</h3>
+        <p class="mb-0">The Android ecosystem boomed. Chrome and the essential WebView showed rapid development, while Samsung Internet emerged as another fast-adopting, Chromium-based player, highlighting Android's active (but fragmented) market.</p>
+      </section>
+
+      <section class="story-card card shadow-sm mx-auto p-3" data-from="2019" data-to="2023" data-browsers="firefox">
+        <h3 class="h5">Firefox Accelerates to Compete</h3>
+        <p class="mb-0">Facing Chromium's dominance, Firefox noticeably increased its adoption speed for key features. This highlights its effort to remain a competitive, independent engine in a rapidly evolving web landscape.</p>
+      </section>
+
+      <section class="story-card card shadow-sm mx-auto p-3" data-from="2020" data-to="2025" data-browsers="chrome,edge,opera">
+        <h3 class="h5">The Chromium Velocity</h3>
+        <p class="mb-0">Recent years show major Chromium browsers (Chrome, Edge, Opera) releasing features almost in unison at very high speeds. This reflects the shared engine's influence, leading to rapid but potentially uniform progress.</p>
+      </section>
+
+      <section class="story-card card shadow-sm mx-auto p-3" data-from="2020" data-to="2025" data-browsers="edge">
+        <h3 class="h5">Edge Reborn</h3>
+        <p class="mb-0">After switching to the Chromium engine (~2020), Edge's development transformed. It now mirrors Chrome's very fast feature adoption, showing successful integration and becoming a major player again. In fact, Edge nudges out Chrome as the fastest feature releaser since 2023.</p>
+      </section>
+    </div>
+  </div>
+
+  <div class="container-fluid col-md-6 col-lg-4 col-xl-3 my-5">
+    <p>This visual journey through browser history paints a clear picture: the web platform is defined by constant, accelerating change. We've witnessed cycles of dominance yield to disruption, the critical rise of mobile browsing, and a dramatic shift towards rapid, standards-based feature adoption, largely driven by intense competition and the consolidation around powerful browser engines like Chromium.</p>
+    <p>Understanding these past dynamics—the bursts of innovation, the periods of stagnation, and the strategic technological shifts—not only illuminates how today's web came to be but also underscores the relentless evolution that will undoubtedly continue to shape our digital experiences tomorrow.</p>
+
+    <h2 class="h4 mt-5">Credits</h2>
+    <ul>
+      <li>Idea from <a href="https://simonwillison.net/2024/Nov/11/mdn-browser-support-timelines/">Simon Willison</a></li>
+      <li>Data from <a href="https://github.com/mdn/browser-compat-data">MDN</a></li>
+      <li>Visualization by <a href="https://www.cursor.com/">Cursor</a> + <a href="https://www.anthropic.com/news/claude-3-7-sonnet">Claude 3.7 Sonnet</a></li>
+      <li>Story by <a href="https://blog.google/technology/google-deepmind/gemini-model-thinking-updates-march-2025/">Gemini 2.5 Experimental 03-25</a></li>
+    </ul>
+    <p><a href="https://github.com/sanand0/webfeatures">Source Code</a></p>
+  </div>
+
+  <script type="module" src="script.js"></script>
+</body>
+
+</html>
