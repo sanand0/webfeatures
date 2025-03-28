@@ -23,6 +23,8 @@ I didn't use AI to build `scraper.py` since [@prudhvi1709](https://github.com/pr
 
 From a blank repository, I used Cursor to generate the code using this sequence of prompts, with minimal editing.
 
+This is **exploratory AI coding**. I don't know what I want until I see it. So I build it, see it, then change it. (This complements vibe coding well.)
+
 ```
 Write a beautiful single page Bootstrap web app that communicates a data story in long form.
 
