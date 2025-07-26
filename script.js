@@ -1,5 +1,22 @@
 import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
 
+const updatedEl = document.getElementById("last-updated");
+updatedEl.innerHTML = '<span class="spinner-border spinner-border-sm" role="status"></span>';
+fetch("last-updated.json")
+  .then((r) => r.json())
+  .then((d) => {
+    const date = new Date(d.timestamp);
+    updatedEl.textContent = `Last updated on ${date.toLocaleDateString(undefined, {
+      weekday: "short",
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+    })}`;
+  })
+  .catch(() => {
+    updatedEl.textContent = "Update date unavailable";
+  });
+
 const xGap = 50;
 const yGap = 25;
 const margin = { top: 110, right: 30, bottom: 20, left: 60 };
